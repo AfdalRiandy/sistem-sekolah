@@ -7,7 +7,11 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AcaraController;
+use App\Http\Controllers\Admin\PenilaianController;
+use App\Http\Controllers\Peserta\PengumumanController;
+use App\Http\Controllers\Admin\PesertaController as AdminPesertaController; 
 use App\Http\Controllers\Panitia\PesertaController as PanitiaPesertaController;
+use App\Http\Controllers\Panitia\PenilaianController as PanitiaPenilaianController;
 use App\Http\Controllers\Peserta\AcaraController as PesertaAcaraController;
 use App\Http\Controllers\Peserta\RiwayatController as PesertaRiwayatController;
 
@@ -48,6 +52,12 @@ Route::middleware(['auth', 'role:panitia'])->prefix('panitia')->name('panitia.')
     Route::post('/peserta/{pendaftaran}/approve', [PanitiaPesertaController::class, 'approve'])->name('peserta.approve');
     Route::post('/peserta/{pendaftaran}/reject', [PanitiaPesertaController::class, 'reject'])->name('peserta.reject');
     Route::post('/peserta/{pendaftaran}/reset', [PanitiaPesertaController::class, 'reset'])->name('peserta.reset');
+
+      //penilaian routes
+      Route::get('/penilaian', [PanitiaPenilaianController::class, 'index'])->name('penilaian.index');
+      Route::get('/penilaian/{acara}', [PanitiaPenilaianController::class, 'show'])->name('penilaian.show');
+      Route::post('/penilaian/{pendaftaran}', [PanitiaPenilaianController::class, 'store'])->name('penilaian.store');
+      Route::post('/penilaian/{acara}/publish', [PanitiaPenilaianController::class, 'publish'])->name('penilaian.publish');
 });
 
 //admin
@@ -60,6 +70,17 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     //acara management routes
     Route::resource('acara', AcaraController::class);
 
+    // peserta management routes
+    Route::get('/peserta', [AdminPesertaController::class, 'index'])->name('peserta.index');
+    Route::get('/peserta/{acara}', [AdminPesertaController::class, 'show'])->name('peserta.show');
+    Route::get('/peserta/{acara}/export', [AdminPesertaController::class, 'export'])->name('peserta.export');
+    Route::get('/peserta/{acara}/pdf', [AdminPesertaController::class, 'pdf'])->name('peserta.pdf');
+
+    //penilaian routes
+    Route::get('/penilaian', [PenilaianController::class, 'index'])->name('penilaian.index');
+    Route::get('/penilaian/{acara}', [PenilaianController::class, 'show'])->name('penilaian.show');
+    Route::post('/penilaian/{pendaftaran}', [PenilaianController::class, 'store'])->name('penilaian.store');
+    Route::post('/penilaian/{acara}/publish', [PenilaianController::class, 'publish'])->name('penilaian.publish');
 });
 
 // peserta
@@ -74,6 +95,10 @@ Route::middleware(['auth', 'role:peserta'])->prefix('peserta')->name('peserta.')
     
     // Riwayat routes
     Route::get('/riwayat', [PesertaRiwayatController::class, 'index'])->name('riwayat.index');
-});
+
+     // Pengumuman routes
+     Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman.index');
+     Route::get('/pengumuman/{acara}', [PengumumanController::class, 'show'])->name('pengumuman.show');
+ });
         
 require __DIR__.'/auth.php';

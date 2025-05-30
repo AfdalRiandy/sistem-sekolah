@@ -40,6 +40,22 @@
             <span>Acara Management</span></a>
     </li>
 
+    <!-- Nav Item - Participants -->
+    <li class="nav-item {{ request()->routeIs('admin.peserta.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.peserta.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Event Participants</span>
+        </a>
+    </li>
+    
+    <!-- Nav Item - Scoring -->
+    <li class="nav-item {{ request()->routeIs('admin.penilaian.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.penilaian.index') }}">
+            <i class="fas fa-fw fa-clipboard-list"></i>
+            <span>Participant Scoring</span>
+        </a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 

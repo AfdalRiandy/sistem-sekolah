@@ -25,6 +25,13 @@
         </a>
     </li>
     
+    <!-- Nav Item - Scoring -->
+    <li class="nav-item {{ request()->routeIs('panitia.penilaian.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('panitia.penilaian.index') }}">
+            <i class="fas fa-fw fa-clipboard-list"></i>
+            <span>Participant Scoring</span>
+        </a>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
 

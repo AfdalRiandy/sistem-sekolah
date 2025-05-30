@@ -32,6 +32,13 @@
         </a>
     </li>
     
+    <li class="nav-item {{ request()->routeIs('peserta.pengumuman.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('peserta.pengumuman.index') }}">
+            <i class="fas fa-fw fa-trophy"></i>
+            <span>Event Results</span>
+        </a>
+    </li>
+    
     <!-- Divider -->
     <hr class="sidebar-divider">
 

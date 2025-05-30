@@ -27,4 +27,10 @@ class PendaftaranAcara extends Model
     {
         return $this->belongsTo(Acara::class);
     }
+
+    // Relationship with Penilaian
+    public function penilaian()
+    {
+        return $this->hasOne(Penilaian::class);
+    }
 }
