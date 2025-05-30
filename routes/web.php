@@ -6,6 +6,7 @@ use App\Http\Controllers\PanitiaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AcaraController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     
     // User management routes
     Route::resource('users', UserController::class);
+
+    //acara management routes
+    Route::resource('acara', AcaraController::class);
+
 });
 
 // peserta

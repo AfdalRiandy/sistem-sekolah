@@ -5,11 +5,11 @@
         <div class="sidebar-brand-icon">
             <i class="fas fa-user"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">admin</div>
+        <div class="mx-3 sidebar-brand-text">admin</div>
     </a>
 
     <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <hr class="my-0 sidebar-divider">
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
@@ -31,6 +31,13 @@
         <a class="nav-link" href="{{ route('admin.users.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>User Management</span></a>
+    </li>
+
+    <!-- Nav Item - Acara Management -->
+    <li class="nav-item {{ request()->routeIs('admin.acara.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('admin.acara.index') }}">
+            <i class="fas fa-solid fa-calendar-plus"></i>
+            <span>Acara Management</span></a>
     </li>
 
     <!-- Divider -->
