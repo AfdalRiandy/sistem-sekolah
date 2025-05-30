@@ -5,11 +5,11 @@
         <div class="sidebar-brand-icon">
             <i class="fas fa-user"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">peserta</div>
+        <div class="mx-3 sidebar-brand-text">peserta</div>
     </a>
 
     <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <hr class="my-0 sidebar-divider">
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item {{ request()->routeIs('peserta.dashboard') ? 'active' : '' }}">
@@ -18,6 +18,20 @@
             <span>Dashboard</span></a>
     </li>
 
+    <li class="nav-item {{ request()->routeIs('peserta.acara.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('peserta.acara.index') }}">
+            <i class="fas fa-fw fa-calendar"></i>
+            <span>Available Events</span>
+        </a>
+    </li>
+    
+    <li class="nav-item {{ request()->routeIs('peserta.riwayat.*') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('peserta.riwayat.index') }}">
+            <i class="fas fa-fw fa-history"></i>
+            <span>My Registrations</span>
+        </a>
+    </li>
+    
     <!-- Divider -->
     <hr class="sidebar-divider">
 

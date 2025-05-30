@@ -21,4 +21,16 @@ class Acara extends Model
         'tanggal_acara' => 'datetime',
         'batas_pendaftaran' => 'datetime',
     ];
+
+    public function pendaftaran()
+    {
+        return $this->hasMany(PendaftaranAcara::class);
+    }
+
+    public function peserta()
+    {
+        return $this->belongsToMany(User::class, 'pendaftaran_acaras')
+                    ->withPivot('status', 'catatan')
+                    ->withTimestamps();
+    }
 }

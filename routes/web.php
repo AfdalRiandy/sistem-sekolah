@@ -7,6 +7,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AcaraController;
+use App\Http\Controllers\Panitia\PesertaController as PanitiaPesertaController;
+use App\Http\Controllers\Peserta\AcaraController as PesertaAcaraController;
+use App\Http\Controllers\Peserta\RiwayatController as PesertaRiwayatController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +41,13 @@ Route::middleware('auth')->group(function () {
 //panitia
 Route::middleware(['auth', 'role:panitia'])->prefix('panitia')->name('panitia.')->group(function () {
     Route::get('/dashboard', [PanitiaController::class, 'dashboard'])->name('dashboard');
+    
+    // Peserta management routes
+    Route::get('/peserta', [PanitiaPesertaController::class, 'index'])->name('peserta.index');
+    Route::get('/peserta/{pendaftaran}', [PanitiaPesertaController::class, 'show'])->name('peserta.show');
+    Route::post('/peserta/{pendaftaran}/approve', [PanitiaPesertaController::class, 'approve'])->name('peserta.approve');
+    Route::post('/peserta/{pendaftaran}/reject', [PanitiaPesertaController::class, 'reject'])->name('peserta.reject');
+    Route::post('/peserta/{pendaftaran}/reset', [PanitiaPesertaController::class, 'reset'])->name('peserta.reset');
 });
 
 //admin
@@ -54,6 +65,15 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
 // peserta
 Route::middleware(['auth', 'role:peserta'])->prefix('peserta')->name('peserta.')->group(function () {
     Route::get('/dashboard', [PesertaController::class, 'dashboard'])->name('dashboard');
+    
+    // Acara routes
+    Route::get('/acara', [PesertaAcaraController::class, 'index'])->name('acara.index');
+    Route::get('/acara/{acara}', [PesertaAcaraController::class, 'show'])->name('acara.show');
+    Route::post('/acara/{acara}/daftar', [PesertaAcaraController::class, 'daftar'])->name('acara.daftar');
+    Route::delete('/acara/batalkan/{pendaftaran}', [PesertaAcaraController::class, 'batalkan'])->name('acara.batalkan');
+    
+    // Riwayat routes
+    Route::get('/riwayat', [PesertaRiwayatController::class, 'index'])->name('riwayat.index');
 });
         
 require __DIR__.'/auth.php';

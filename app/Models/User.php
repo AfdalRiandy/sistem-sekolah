@@ -43,4 +43,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function pendaftaranAcara()
+    {
+        return $this->hasMany(PendaftaranAcara::class);
+    }
+
+    public function acara()
+    {
+        return $this->belongsToMany(Acara::class, 'pendaftaran_acaras')
+                    ->withPivot('status', 'catatan')
+                    ->withTimestamps();
+    }
 }
